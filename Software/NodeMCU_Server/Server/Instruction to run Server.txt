@@ -1,0 +1,14 @@
+FLASK instralation process for python 2.XX
+
+
+from tutorials point 
+https://www.tutorialspoint.com/flask/flask_environment.htm
+
+there is a given path 
+friom that path we start the istallation process 
+by following the process described on the tutorials point
+
+once the flast is installed 
+
+run the dummy code to check 
+
