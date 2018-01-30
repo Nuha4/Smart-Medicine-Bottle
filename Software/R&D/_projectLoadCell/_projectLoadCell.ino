@@ -1,6 +1,6 @@
 #include "HX711.h"
 
-HX711 cell (3,2);
+HX711 cell (D3,D2);
 
 void setup() {
   // put your setup code here, to run once:
