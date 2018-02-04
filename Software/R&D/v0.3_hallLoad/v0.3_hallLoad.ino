@@ -39,7 +39,7 @@ void HallEffect(){
 void LoadCell(){
     float weight = scale.get_units(1); //loadcell
     //weight = weight + 90;
-    Serial.println(String((weight), 2));
+    Serial.println(String((weight), 5));
     delay(5000);
 }
 
