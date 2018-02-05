@@ -9,13 +9,16 @@ from bson.objectid import ObjectId  # For ObjectId to work
 # todos = db.sensor_data #Select the collection
 
 app = Flask(__name__)
+from pymongo import MongoClient
+
+#Connect to MongoDB
+client = MongoClient(port=27017)
+db = client.MedicineDB
 
 @app.route('/')
 def hello():
     print("it works")
     return "It Works"
-
-
 
 @app.route('/value', methods=['POST'])
 def value():
@@ -31,12 +34,13 @@ def value():
     # value=test["value"]
     # id=test["id"]
     # todos.insert({ "timestamp":timestamp, "name":name, "value":value, "id":id})
-
-    file=open('test.tx','a')
+    file=open('test.txt','a')
     file.write("data"+str(test))
     print("File Read Successed")
     file.close()
     return "json posted"
 
+    result=db.data_table.insert_one(test)
+    return "added"
 
-app.run(host='192.168.6.145', port=8081)
+app.run(host='192.168.7.40', port=8081)
