@@ -1,22 +1,46 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MY APP</title>
-</head>
-<body>
-  May Node and Express be with you.
+  <title> MY APP </title>
+  <style>
+      table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+      }
 
-<ul class="quotes">
-  <% for(var i=0; i<quotes.length; i++) {%>
-    <li class="quote">
-      <%= quotes[i].sensorType %>
-      <%= quotes[i].Gram %>
-    </li>
-  <% } %>
-  </ul>
+      td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+      }
+
+      tr:nth-child(even) {
+          background-color: #dddddd;
+      }
+  </style>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th>Load cell</th>
+      <th>TimeStamp</th>>
+    </tr>
+      <% for(var i=0; i<quotes.length; i++) {%>
+      <tr>
+        <td>
+          <%= quotes[i].Gram %>
+        </td>
+        <td>
+          <%= quotes[i].dateTime %>
+        </td>
+      </tr>
+      <% } %>
+  </table>
+</body>
+</html>
 
 
   <form action="/quotes" method="POST">
@@ -26,5 +50,16 @@
   </form>
 
 
-</body>
-</html>
+  <!--
+  Loadcell Data and Time
+
+<ul class="quotes">
+  <% for(var i=0; i<quotes.length; i++) {%>
+    <li class="quote">
+      <%= quotes[i].sensorType %>
+      <%= quotes[i].Gram[0] %>
+      <%= quotes[i].Gram[1] %>
+    </li>
+  <% } %>
+  </ul>
+-->
