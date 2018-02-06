@@ -78,11 +78,15 @@ void loop() {
       StaticJsonBuffer<300> JSONbuffer;   //Declaring static JSON buffer
       JsonObject& JSONencoder = JSONbuffer.createObject(); 
    
-      JSONencoder["sensorType"] = "LoadCell - Date and Time";
+      JSONencoder["sensorType"] = "LoadCell";
    
-      JsonArray& values = JSONencoder.createNestedArray("Gram - Date and Time"); //JSON array
+      JsonArray& values = JSONencoder.createNestedArray("Gram"); //JSON array
       values.add(value); //Add value to array
-      values.add(daymon); //Add Date and Time to array
+ //==============================================================================================      
+      JSONencoder["sensorType"] = "Date and Time";
+   
+      JsonArray& values1 = JSONencoder.createNestedArray("dd-mm-yyyy hh-mm-ss"); //JSON array
+      values1.add(daymon); //Add Date and Time to array
       //==========================================================================================
       char JSONmessageBuffer[300];
       JSONencoder.prettyPrintTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
@@ -90,7 +94,7 @@ void loop() {
    
       HTTPClient http;    //Declare object of class HTTPClient
    
-      http.begin("http://192.168.6.176:8081/value");      //Specify request destination
+      http.begin("http://192.168.7.40:8081/value");      //Specify request destination
       http.addHeader("Content-Type", "application/json");  //Specify content-type header
    
       int httpCode = http.POST(JSONmessageBuffer);   //Send the request
