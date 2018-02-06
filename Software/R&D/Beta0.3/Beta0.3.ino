@@ -81,13 +81,11 @@ void loop() {
    
       JSONencoder["sensorType"] = "LoadCell";
    
-      JsonArray& values = JSONencoder.createNestedArray("Gram"); //JSON array
-      values.add(value); //Add value to array
+      JSONencoder["value"] = value;
  //==============================================================================================      
       JSONencoder["TimeStamp"] = "Date and Time";
    
-      JsonArray& values1 = JSONencoder.createNestedArray("dateTime"); //JSON array
-      values1.add(daymon); //Add Date and Time to array
+      JSONencoder["DateTime"] = daymon;
  //==========================================================================================
       char JSONmessageBuffer[300];
       JSONencoder.prettyPrintTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
