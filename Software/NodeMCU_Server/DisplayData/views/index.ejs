@@ -28,38 +28,16 @@
       <th>Load cell</th>
       <th>TimeStamp</th>>
     </tr>
-      <% for(var i=0; i<quotes.length; i++) {%>
+      <% for(var i=0; i<CellData.length; i++) {%>
       <tr>
         <td>
-          <%= quotes[i].Gram %>
+          <%= CellData[i].value %>
         </td>
         <td>
-          <%= quotes[i].dateTime %>
+          <%= CellData[i].DateTime %>
         </td>
       </tr>
       <% } %>
   </table>
 </body>
 </html>
-
-
-  <form action="/quotes" method="POST">
-    <input type="text" placeholder="name" name="name">
-    <input type="text" placeholder="quote" name="quote">
-    <button type="submit">Submit</button>
-  </form>
-
-
-  <!--
-  Loadcell Data and Time
-
-<ul class="quotes">
-  <% for(var i=0; i<quotes.length; i++) {%>
-    <li class="quote">
-      <%= quotes[i].sensorType %>
-      <%= quotes[i].Gram[0] %>
-      <%= quotes[i].Gram[1] %>
-    </li>
-  <% } %>
-  </ul>
--->
