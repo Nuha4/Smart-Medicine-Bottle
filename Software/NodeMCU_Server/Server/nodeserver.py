@@ -34,13 +34,14 @@ def value():
     # value=test["value"]
     # id=test["id"]
     # todos.insert({ "timestamp":timestamp, "name":name, "value":value, "id":id})
+
+    result=db.data_table.insert_one(test)
+    return "added"
     file=open('test.txt','a')
     file.write("data"+str(test))
     print("File Read Successed")
     file.close()
     return "json posted"
 
-    result=db.data_table.insert_one(test)
-    return "added"
 
-app.run(host='192.168.7.40', port=8081)
+app.run(host='192.168.4.115', port=8081)
