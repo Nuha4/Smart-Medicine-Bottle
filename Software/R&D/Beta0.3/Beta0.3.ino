@@ -10,6 +10,7 @@ const int SCALE_SCK_PIN = D3;
 // constants won't change. They're used here to set pin numbers:
 const int hallPin = D0;     // the number of the hall effect sensor pin
 const int ledPin =  D7;     // the number of the LED pin
+const int ledPinRed =  D6;     // the number of the LED RED pin
 // variables will change:
 int hallState = 0;          // variable for reading the hall sensor status
 float value = 0;
@@ -26,11 +27,12 @@ void setup() {
   scale.set_scale(2230);// <- set here calibration factor!!!
   scale.tare();
   // initialize the LED pin as an output:
-  pinMode(ledPin, OUTPUT);      
+  pinMode(ledPin, OUTPUT);
+  pinMode(ledPinRed, OUTPUT);      
   // initialize the hall effect sensor pin as an input:
   pinMode(hallPin, INPUT);
 //============================================================================================
-  WiFi.begin("DataSoft_WiFi", "support123");   //WiFi connection
+  WiFi.begin("teemoLover", "8033803t");   //WiFi connection
  
   while (WiFi.status() != WL_CONNECTED) {  //Wait for the WiFI connection completion
  
@@ -41,7 +43,7 @@ void setup() {
   Serial.println("WiFi Connected!");
 //=============================================================================================
   configTime(timezone, dst, "pool.ntp.org","time.nist.gov");
-  delay(10000);
+  delay(3000);
 }
 //==============================================================================================
 float LoadCell(){
@@ -52,7 +54,7 @@ float LoadCell(){
     Serial.print("In loadcell ");
     Serial.println(value);
     return value;
-    delay(5000);
+    delay(1000);
 }
 
  
@@ -63,6 +65,7 @@ void loop() {
   if (hallState == LOW){
     Serial.println("!!! LID ON, Time to take the reading and send it to server!!!");  
     digitalWrite(ledPin, HIGH);
+    digitalWrite(ledPinRed, LOW);
     value = LoadCell();
     time_t now = time(nullptr);
     struct tm* p_tm = localtime(&now);
@@ -93,7 +96,7 @@ void loop() {
    
       HTTPClient http;    //Declare object of class HTTPClient
    
-      http.begin("http://192.168.7.40:8081/value");      //Specify request destination
+      http.begin("http://192.168.43.120:8081/value");      //Specify request destination
       http.addHeader("Content-Type", "application/json");  //Specify content-type header
    
       int httpCode = http.POST(JSONmessageBuffer);   //Send the request
@@ -110,11 +113,12 @@ void loop() {
    
     }
  
-  delay(3000);  //Send a request every 30 seconds
+  delay(1000);  //Send a request every 30 seconds
   }
   else if (hallState == HIGH){
     Serial.println("!!! LID OFF, Time to take my timely MEDICINE!!!");  
     digitalWrite(ledPin, LOW);
+    digitalWrite(ledPinRed, HIGH);
   }
 
 }

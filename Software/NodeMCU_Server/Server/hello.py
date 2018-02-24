@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 
 @app.route('/postjson', methods=['POST'])
-def postJsonHandler():
+def postJson():
     content = request.get_json()
     print(content)
     return 'JSON posted'

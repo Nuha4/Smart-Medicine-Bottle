@@ -95,7 +95,7 @@ void loop() {
    
       HTTPClient http;    //Declare object of class HTTPClient
    
-      http.begin("http://192.168.7.40:8081/value");      //Specify request destination
+      http.begin("http://192.168.4.110:8081/value");      //Specify request destination
       http.addHeader("Content-Type", "application/json");  //Specify content-type header
    
       int httpCode = http.POST(JSONmessageBuffer);   //Send the request
